@@ -52,7 +52,7 @@ platformCollisions2D.forEach((row, y) => {
   })
 })
 
-const gravity = 0.1
+const gravity = 0.15
 
 const player = new Player({
   position: {
@@ -142,14 +142,7 @@ function animate() {
   c.scale(4, 4)
   c.translate(camera.position.x, camera.position.y)
   background.update()
-  // collisionBlocks.forEach((collisionBlock) => {
-  //   collisionBlock.update()
-  // })
-
-  // platformCollisionBlocks.forEach((block) => {
-  //   block.update()
-  // })
-
+ 
   player.checkForHorizontalCanvasCollision()
   player.update()
 
@@ -194,6 +187,7 @@ window.addEventListener('keydown', (event) => {
       break
     case 'w':
       player.velocity.y = -4
+      if (player.velocity.y === 0) { player.velocity.y = -10 } // this should work to prevet the infinite jumping but lets see
       break
   }
 })
